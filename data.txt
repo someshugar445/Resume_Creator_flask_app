@@ -9,27 +9,5 @@
     "skills": [
       "Raspberry pi"
     ]
-  },
-  {
-    "email": "vijay@pynative.com",
-    "name": "vijay",
-    "projects": [
-      "flask develop"
-    ],
-    "salary": 9000,
-    "skills": [
-      "Raspberry pi"
-    ]
-  },
-  {
-    "name": "jane doe",
-    "salary": 9000,
-    "skills": [
-      "Raspberry pi"
-    ],
-    "email": "janedoe@pynative.com",
-    "projects": [
-      "Python Data Mining"
-    ]
   }
 ]

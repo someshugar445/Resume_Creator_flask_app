@@ -69,12 +69,18 @@ def create_record():
     with open('data.txt', 'r') as f:
         data = f.read()
         old_records = json.loads(data)
-    record_found = False
+    record_not_found = False
     for record in old_records:
         if record['name'] != new_record['name'] and record['email'] != new_record['email']:
-            record_found = True
+            record_not_found = True
             add_record = new_record
-    if record_found:
+    if not old_records:
+        old_records.append(new_record)
+        with open('data.txt', 'w') as f:
+            f.write(json.dumps(old_records, indent=2))
+        return jsonify(old_records)
+
+    elif record_not_found:
         old_records.append(add_record)
         with open('data.txt', 'w') as f:
             f.write(json.dumps(old_records, indent=2))
