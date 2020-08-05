@@ -13,7 +13,7 @@ app = Flask(__name__)
 def page_not_found(error):
     return 'This page does not exist', 404
 
-
+#this is get request
 @app.route('/', methods=['GET'])
 def query_record():
     try:
