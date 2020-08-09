@@ -3,15 +3,23 @@
 
 import json
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from os.path import join, dirname, realpath
 
-app = Flask(__name__)
+app=Flask(__name__,template_folder='template')
 
 
 @app.errorhandler(404)
 def page_not_found(error):
     return 'This page does not exist', 404
+
+@app.route("/")
+def home():
+    return render_template("home.html")
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
 
 #this is get request
 @app.route('/', methods=['GET'])
@@ -65,28 +73,31 @@ def update_record():
 def create_record():
     name = request.args.get('name')
     print(name)
-    new_record = json.loads(request.data)
-    with open('data.txt', 'r') as f:
-        data = f.read()
-        old_records = json.loads(data)
-    record_not_found = False
-    for record in old_records:
-        if record['name'] != new_record['name'] and record['email'] != new_record['email']:
-            record_not_found = True
-            add_record = new_record
-    if not old_records:
-        old_records.append(new_record)
-        with open('data.txt', 'w') as f:
-            f.write(json.dumps(old_records, indent=2))
-        return jsonify(old_records), 201
 
-    elif record_not_found:
-        old_records.append(add_record)
-        with open('data.txt', 'w') as f:
-            f.write(json.dumps(old_records, indent=2))
-        return jsonify(old_records), 201
-    else:
-        return "error': 'name or email already exists"
+    if request.form['submit_button'] == 'Submit':
+        new_record = request.form
+        print(request.form)
+        with open('data.txt', 'r') as f:
+            data = f.read()
+            old_records = json.loads(data)
+        record_not_found = False
+        for record in old_records:
+            if record['name'] != new_record['name'] and record['email'] != new_record['email']:
+                record_not_found = True
+                add_record = new_record
+        if not old_records:
+            old_records.append(new_record)
+            with open('data.txt', 'w') as f:
+                f.write(json.dumps(old_records, indent=2))
+            return jsonify(old_records), 201
+
+        elif record_not_found:
+            old_records.append(add_record)
+            with open('data.txt', 'w') as f:
+                f.write(json.dumps(old_records, indent=2))
+            return jsonify(old_records), 201
+        else:
+            return "error': 'name or email already exists"
 
 
 @app.route('/', methods=['DELETE'])

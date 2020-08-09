@@ -20,5 +20,13 @@
     "skills": [
       "Raspberry pi"
     ]
+  },
+  {
+    "name": "rahul",
+    "email": "rahul@gmail.com",
+    "projects": "flask",
+    "salary": "2000",
+    "skills": "Python",
+    "submit_button": "Submit"
   }
 ]
