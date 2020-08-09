@@ -9,5 +9,16 @@
     "skills": [
       "Raspberry pi"
     ]
+  },
+  {
+    "email": "somesh@pynative.com",
+    "name": "somesh",
+    "projects": [
+      "flask develop"
+    ],
+    "salary": 10000,
+    "skills": [
+      "Raspberry pi"
+    ]
   }
 ]

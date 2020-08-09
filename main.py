@@ -78,13 +78,13 @@ def create_record():
         old_records.append(new_record)
         with open('data.txt', 'w') as f:
             f.write(json.dumps(old_records, indent=2))
-        return jsonify(old_records)
+        return jsonify(old_records), 201
 
     elif record_not_found:
         old_records.append(add_record)
         with open('data.txt', 'w') as f:
             f.write(json.dumps(old_records, indent=2))
-        return jsonify(old_records)
+        return jsonify(old_records), 201
     else:
         return "error': 'name or email already exists"
 
