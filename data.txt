@@ -23,10 +23,10 @@
   },
   {
     "name": "rahul",
-    "email": "rahul@gmail.com",
-    "projects": "flask",
-    "salary": "2000",
-    "skills": "Python",
+    "email": "rahul@pynative.com",
+    "projects": "testing",
+    "salary": "3000",
+    "skills": "Python,R",
     "submit_button": "Submit"
   }
 ]

@@ -6,23 +6,26 @@ import os
 from flask import Flask, request, jsonify, render_template
 from os.path import join, dirname, realpath
 
-app=Flask(__name__,template_folder='template')
+app = Flask(__name__, template_folder='template')
 
 
 @app.errorhandler(404)
 def page_not_found(error):
     return 'This page does not exist', 404
 
+
 @app.route("/")
 def home():
     return render_template("home.html")
+
 
 @app.route("/about")
 def about():
     return render_template("about.html")
 
-#this is get request
-@app.route('/', methods=['GET'])
+
+# this is get request
+@app.route('/get', methods=['GET'])
 def query_record():
     try:
         name = request.args.get('name')
