@@ -10,6 +10,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <style>
+  #inp {
+     text-align: center;
+     margin: auto;
+     position: absolute;
+     top: 85%;
+     left: 40%;
+  }
   form {
   text-align: center;
 }
@@ -26,15 +33,17 @@ input {
 </style>
   <head>
     <meta charset="utf-8">
-    <title>Flask Tutorial</title>
+    <title>Resume Creator</title>
   </head>
   <body>
-  <h1>Online Job Portal</h1>
-<form action="/" method="POST" id="form">
+  <h1>Online Resume Builder</h1>
+<form action="/" method="POST" id="form"  enctype="multipart/form-data">
 <div class="input_area">
   <div class="form-group">
     <label>Name</label>
+    <span>
     <input type="text" size="50" class="form-control" id="name" name="name" placeholder="Enter your name">
+    </span>
   </div>
 
   <div class="form-group">
@@ -57,9 +66,7 @@ input {
     <input class="form-control" id="skills" list="skill_list" name="skills" placeholder="Add skills">
   </div>
 
-<button type="submit"  name="submit_button" value="Submit" class="btn btn-primary" style="background-color: forestgreen">Submit</button>
-  <button type="submit"  name="edit_button" value="Submit" class="btn btn-primary" style="background-color: deepskyblue">Edit</button>
-  <button type="submit"  name="delete_button" value="Submit" class="btn btn-primary" style="background-color: red">Delete</button>
+<button type="submit"  name="submit_button" value="Download" class="btn btn-primary" style="background-color: forestgreen">Download</button>
   </div>
 </form>
 <datalist id="skill_list"> <option>Python</option> <option>R</option> <option>SQL</option> </datalist>

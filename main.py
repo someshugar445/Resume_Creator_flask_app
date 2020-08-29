@@ -3,10 +3,17 @@
 
 import json
 import os
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, redirect, url_for, send_from_directory
 from os.path import join, dirname, realpath
+from docx import Document
 
 app = Flask(__name__, template_folder='template')
+
+
+def delete_paragraph(paragraph):
+    p = paragraph._element
+    p.getparent().remove(p)
+    p._p = p._element = None
 
 
 @app.errorhandler(404)
@@ -14,8 +21,26 @@ def page_not_found(error):
     return 'This page does not exist', 404
 
 
-@app.route("/")
+@app.route('/', methods=['GET', 'POST'])
 def home():
+    if request.method == 'POST' and request.form['submit_button'] == 'Download':
+        print(request.form)
+        resume = os.path.join(app.root_path, 'resume')
+        file_path = os.path.join(resume, "Resume.docx")
+        mydoc = Document(file_path)
+        for paragraph in mydoc.paragraphs:
+            delete_paragraph(paragraph)
+        mydoc.add_heading("Resume", 0)
+        mydoc.add_paragraph(request.form['name'])
+        mydoc.add_paragraph(request.form['email'])
+        mydoc.add_heading("Projects", 1)
+        mydoc.add_paragraph(request.form['projects'])
+        mydoc.add_heading("Skills", 2)
+        mydoc.add_paragraph(request.form['skills'])
+        mydoc.save(file_path)
+
+        return send_from_directory(directory=resume, filename='Resume.docx')
+
     return render_template("home.html")
 
 
@@ -25,7 +50,7 @@ def about():
 
 
 # this is get request
-@app.route('/get', methods=['GET'])
+@app.route('/', methods=['GET'])
 def query_record():
     try:
         name = request.args.get('name')
@@ -77,7 +102,7 @@ def create_record():
     name = request.args.get('name')
     print(name)
 
-    if request.form['submit_button'] == 'Submit':
+    if request.form['submit_button'] == 'Download':
         new_record = request.form
         print(request.form)
         with open('data.txt', 'r') as f:
