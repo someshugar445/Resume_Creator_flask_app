@@ -10,6 +10,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <style>
+    body {
+   background-image: url("/static/resume3.png");
+   background-repeat: no-repeat, repeat;
+   background-color: #085ECF ;
+}
   #inp {
      text-align: center;
      margin: auto;
@@ -36,6 +41,7 @@ input {
     <title>Resume Creator</title>
   </head>
   <body>
+
   <h1>Online Resume Builder</h1>
 <form action="/" method="POST" id="form"  enctype="multipart/form-data">
 <div class="input_area">
@@ -57,8 +63,8 @@ input {
   </div>
 
    <div class="form-group">
-    <label>Salary</label>
-    <input type="number" class="form-control" id="salary" name="salary" placeholder="Enter your salary">
+    <label>Education</label>
+    <input type="text" class="form-control" id="edu" name="edu" placeholder="">
   </div>
 
   <div class="form-group">
@@ -69,6 +75,9 @@ input {
 <button type="submit"  name="submit_button" value="Download" class="btn btn-primary" style="background-color: forestgreen">Download</button>
   </div>
 </form>
+  <br> <br> <br> <br>
+  <br>
+  <img src="{{url_for('static', filename='Resumetips.png')}}" />
 <datalist id="skill_list"> <option>Python</option> <option>R</option> <option>SQL</option> </datalist>
 <datalist id="project_list"> <option>Development</option> <option>testing</option> <option>graphics</option> </datalist>
   </body>
