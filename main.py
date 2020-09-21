@@ -26,22 +26,22 @@ def home():
     if request.method == 'POST' and request.form['submit_button'] == 'Download':
         print(request.form)
         resume = os.path.join(app.root_path, 'resume')
-        file_path = os.path.join(resume, "Resume.docx")
+        file_path = os.path.join(resume, "Resume2.docx")
         mydoc = Document(file_path)
-        for paragraph in mydoc.paragraphs:
-            delete_paragraph(paragraph)
-        mydoc.add_heading("Resume", 0)
-        mydoc.add_paragraph(request.form['name'])
-        mydoc.add_paragraph(request.form['email'])
-        mydoc.add_heading("Skills", 1)
-        mydoc.add_paragraph(request.form['skills'])
-        mydoc.add_heading("Projects", 2)
-        mydoc.add_paragraph(request.form['projects'])
-        mydoc.add_heading("Education", 3)
-        mydoc.add_paragraph(request.form['edu'])
+        # for paragraph in mydoc.paragraphs:
+        #     delete_paragraph(paragraph)
+        # mydoc.add_heading("Resume", 0)
+        # mydoc.add_paragraph(request.form['name'])
+        # mydoc.add_paragraph(request.form['email'])
+        # mydoc.add_heading("Skills", 1)
+        # mydoc.add_paragraph(request.form['skills'])
+        # mydoc.add_heading("Projects", 1)
+        # mydoc.add_paragraph(request.form['projects'])
+        # mydoc.add_heading("Education", 1)
+        # mydoc.add_paragraph(request.form['edu'])
         mydoc.save(file_path)
 
-        return send_from_directory(directory=resume, filename='Resume.docx')
+        return send_from_directory(directory=resume, filename='Resume2.docx')
 
     return render_template("home.html")
 
