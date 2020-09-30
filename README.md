@@ -1,4 +1,5 @@
 My resume maker:
 
-This project Give the user a readmade resume template.
+This project Give the user a sample ready made resume template.
+
 Your resume will finally show your potential. Personalize dozens of resume templates.
