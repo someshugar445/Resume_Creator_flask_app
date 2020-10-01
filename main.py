@@ -15,10 +15,12 @@ def delete_paragraph(paragraph):
     p.getparent().remove(p)
     p._p = p._element = None
 
+
 def remove_row(table, row):
     tbl = table._tbl
     tr = row._tr
     tbl.remove(tr)
+
 
 @app.errorhandler(404)
 def page_not_found(error):
@@ -28,7 +30,6 @@ def page_not_found(error):
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST' and request.form['submit_button'] == 'Download':
-        print(request.form)
         resume = os.path.join(app.root_path, 'resume')
         file_path = os.path.join(resume, "Resume2.docx")
         doc_obj = Document(file_path)
@@ -47,9 +48,29 @@ def home():
         doc_obj.add_heading("Education", 1)
         doc_obj.add_paragraph(request.form['edu'])
         doc_obj.save(file_path)
-
+        old_records =[]
+        new_record = request.form
+        record_not_found = False
+        if os.stat("data.txt").st_size != 0:
+            with open('data.txt', 'r') as f:
+                data = f.read()
+            old_records = json.loads(data[:])
+            for record in old_records:
+                if record['name'] == new_record['name'] and record['email'] == new_record['email']:
+                    record_not_found = False
+                else:
+                    record_not_found = True
+            if record_not_found:
+                old_records.append(new_record)
+                with open('data.txt', 'w') as f:
+                    f.write(json.dumps(old_records, indent=2))
+            else:
+                print("Info': 'name or email already exists")
+        else:
+            old_records.append(new_record)
+            with open('data.txt', 'w') as f:
+                f.write(json.dumps(old_records, indent=2))
         return send_from_directory(directory=resume, filename='Resume2.docx')
-
     return render_template("home.html")
 
 
@@ -59,15 +80,15 @@ def about():
 
 
 # this is get request
-@app.route('/', methods=['GET'])
-def query_record():
+@app.route('/get/<name>', methods=['GET'])
+def query_record(name='all'):
     try:
-        name = request.args.get('name')
+        name = name
         print(name)
         with open('data.txt', 'r') as f:
             data = f.read()
             records = json.loads(data)
-        if name:
+        if name != 'all':
             record_found = False
             for record in records:
                 if record['name'] == name:
@@ -76,7 +97,7 @@ def query_record():
             if record_found:
                 return jsonify(name_record)
             else:
-                return "error: name not found"
+                return "Error: name not found"
         else:
             return jsonify(records)
     except Exception as e:
@@ -106,18 +127,15 @@ def update_record():
     return jsonify(records)
 
 
-@app.route('/', methods=['POST'])
+@app.route('/post', methods=['POST'])
 def create_record():
-    name = request.args.get('name')
-    print(name)
-
     if request.form['submit_button'] == 'Download':
         new_record = request.form
         print(request.form)
         with open('data.txt', 'r') as f:
             data = f.read()
             old_records = json.loads(data)
-        record_not_found = False
+        record_not_found = True
         for record in old_records:
             if record['name'] != new_record['name'] and record['email'] != new_record['email']:
                 record_not_found = True
@@ -128,8 +146,8 @@ def create_record():
                 f.write(json.dumps(old_records, indent=2))
             return jsonify(old_records), 201
 
-        elif record_not_found:
-            old_records.append(add_record)
+        if record_not_found:
+            old_records.append(new_record)
             with open('data.txt', 'w') as f:
                 f.write(json.dumps(old_records, indent=2))
             return jsonify(old_records), 201

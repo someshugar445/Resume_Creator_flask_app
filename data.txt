@@ -1,32 +1,18 @@
 [
   {
-    "email": "vinay@pynative.com",
-    "name": "vinay",
-    "projects": [
-      "flask develop"
-    ],
-    "salary": 9000,
-    "skills": [
-      "Raspberry pi"
-    ]
+    "name": "Somesh Ugar",
+    "email": "someshugar@gmail.com",
+    "projects": "Development",
+    "edu": "Electronics and Communication Engg , 2016",
+    "skills": "Python,R,SQL, Statistical Analysis, Exploratory Data Analysis,Data Science, Machine Learning,NLP",
+    "submit_button": "Download"
   },
   {
-    "email": "somesh@pynative.com",
-    "name": "somesh",
-    "projects": [
-      "flask develop"
-    ],
-    "salary": 10000,
-    "skills": [
-      "Raspberry pi"
-    ]
-  },
-  {
-    "name": "rahul",
-    "email": "rahul@pynative.com",
-    "projects": "testing",
-    "salary": "3000",
-    "skills": "Python,R",
-    "submit_button": "Submit"
+    "name": "Vinay",
+    "email": "vinay@gmail.com",
+    "projects": "Development",
+    "edu": "Electronics and Communication Engg , 2016",
+    "skills": "Python,R,SQL, Statistical Analysis, Exploratory Data Analysis,Data Science, Machine Learning,NLP",
+    "submit_button": "Download"
   }
 ]
