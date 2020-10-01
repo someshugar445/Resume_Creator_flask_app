@@ -15,6 +15,10 @@ def delete_paragraph(paragraph):
     p.getparent().remove(p)
     p._p = p._element = None
 
+def remove_row(table, row):
+    tbl = table._tbl
+    tr = row._tr
+    tbl.remove(tr)
 
 @app.errorhandler(404)
 def page_not_found(error):
@@ -27,19 +31,22 @@ def home():
         print(request.form)
         resume = os.path.join(app.root_path, 'resume')
         file_path = os.path.join(resume, "Resume2.docx")
-        mydoc = Document(file_path)
-        # for paragraph in mydoc.paragraphs:
-        #     delete_paragraph(paragraph)
-        # mydoc.add_heading("Resume", 0)
-        # mydoc.add_paragraph(request.form['name'])
-        # mydoc.add_paragraph(request.form['email'])
-        # mydoc.add_heading("Skills", 1)
-        # mydoc.add_paragraph(request.form['skills'])
-        # mydoc.add_heading("Projects", 1)
-        # mydoc.add_paragraph(request.form['projects'])
-        # mydoc.add_heading("Education", 1)
-        # mydoc.add_paragraph(request.form['edu'])
-        mydoc.save(file_path)
+        doc_obj = Document(file_path)
+        for paragraph in doc_obj.paragraphs:
+            delete_paragraph(paragraph)
+        for table in doc_obj.tables:
+            for row in table.rows:
+                remove_row(table, row)
+        doc_obj.add_heading("Resume", 0)
+        doc_obj.add_paragraph(request.form['name'])
+        doc_obj.add_paragraph(request.form['email'])
+        doc_obj.add_heading("Skills", 1)
+        doc_obj.add_paragraph(request.form['skills'])
+        doc_obj.add_heading("Projects", 1)
+        doc_obj.add_paragraph(request.form['projects'])
+        doc_obj.add_heading("Education", 1)
+        doc_obj.add_paragraph(request.form['edu'])
+        doc_obj.save(file_path)
 
         return send_from_directory(directory=resume, filename='Resume2.docx')
 
