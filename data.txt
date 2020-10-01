@@ -2,15 +2,15 @@
   {
     "name": "Somesh Ugar",
     "email": "someshugar@gmail.com",
-    "projects": "Development",
+    "projects": "flask, python",
     "edu": "Electronics and Communication Engg , 2016",
     "skills": "Python,R,SQL, Statistical Analysis, Exploratory Data Analysis,Data Science, Machine Learning,NLP",
     "submit_button": "Download"
   },
   {
-    "name": "Vinay",
+    "name": "Vinay Ugar",
     "email": "vinay@gmail.com",
-    "projects": "Development",
+    "projects": "flask, python",
     "edu": "Electronics and Communication Engg , 2016",
     "skills": "Python,R,SQL, Statistical Analysis, Exploratory Data Analysis,Data Science, Machine Learning,NLP",
     "submit_button": "Download"

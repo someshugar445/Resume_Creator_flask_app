@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # encoding: utf-8
-
 import json
 import os
 from flask import Flask, request, jsonify, render_template, redirect, url_for, send_from_directory
@@ -9,23 +8,19 @@ from docx import Document
 
 app = Flask(__name__, template_folder='template')
 
-
 def delete_paragraph(paragraph):
     p = paragraph._element
     p.getparent().remove(p)
     p._p = p._element = None
-
 
 def remove_row(table, row):
     tbl = table._tbl
     tr = row._tr
     tbl.remove(tr)
 
-
 @app.errorhandler(404)
 def page_not_found(error):
     return 'This page does not exist', 404
-
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -56,7 +51,7 @@ def home():
                 data = f.read()
             old_records = json.loads(data[:])
             for record in old_records:
-                if record['name'] == new_record['name'] and record['email'] == new_record['email']:
+                if record['name'] == new_record['name'] or record['email'] == new_record['email']:
                     record_not_found = False
                 else:
                     record_not_found = True
@@ -77,7 +72,6 @@ def home():
 @app.route("/about")
 def about():
     return render_template("about.html")
-
 
 # this is get request
 @app.route('/get/<name>', methods=['GET'])
@@ -125,34 +119,6 @@ def update_record():
     with open('data.txt', 'w') as f:
         f.write(json.dumps(records, indent=2))
     return jsonify(records)
-
-
-@app.route('/post', methods=['POST'])
-def create_record():
-    if request.form['submit_button'] == 'Download':
-        new_record = request.form
-        print(request.form)
-        with open('data.txt', 'r') as f:
-            data = f.read()
-            old_records = json.loads(data)
-        record_not_found = True
-        for record in old_records:
-            if record['name'] != new_record['name'] and record['email'] != new_record['email']:
-                record_not_found = True
-                add_record = new_record
-        if not old_records:
-            old_records.append(new_record)
-            with open('data.txt', 'w') as f:
-                f.write(json.dumps(old_records, indent=2))
-            return jsonify(old_records), 201
-
-        if record_not_found:
-            old_records.append(new_record)
-            with open('data.txt', 'w') as f:
-                f.write(json.dumps(old_records, indent=2))
-            return jsonify(old_records), 201
-        else:
-            return "error': 'name or email already exists"
 
 
 @app.route('/', methods=['DELETE'])
