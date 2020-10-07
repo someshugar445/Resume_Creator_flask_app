@@ -8,19 +8,23 @@ from docx import Document
 
 app = Flask(__name__, template_folder='template')
 
+
 def delete_paragraph(paragraph):
     p = paragraph._element
     p.getparent().remove(p)
     p._p = p._element = None
+
 
 def remove_row(table, row):
     tbl = table._tbl
     tr = row._tr
     tbl.remove(tr)
 
+
 @app.errorhandler(404)
 def page_not_found(error):
     return 'This page does not exist', 404
+
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -43,7 +47,7 @@ def home():
         doc_obj.add_heading("Education", 1)
         doc_obj.add_paragraph(request.form['edu'])
         doc_obj.save(file_path)
-        old_records =[]
+        old_records = []
         new_record = request.form
         record_not_found = False
         if os.stat("data.txt").st_size != 0:
@@ -72,81 +76,6 @@ def home():
 @app.route("/about")
 def about():
     return render_template("about.html")
-
-# this is get request
-@app.route('/get/<name>', methods=['GET'])
-def query_record(name='all'):
-    try:
-        name = name
-        print(name)
-        with open('data.txt', 'r') as f:
-            data = f.read()
-            records = json.loads(data)
-        if name != 'all':
-            record_found = False
-            for record in records:
-                if record['name'] == name:
-                    name_record = record
-                    record_found = True
-            if record_found:
-                return jsonify(name_record)
-            else:
-                return "Error: name not found"
-        else:
-            return jsonify(records)
-    except Exception as e:
-        print("Exception", e)
-
-
-@app.route('/', methods=['PUT'])
-def update_record():
-    name = request.args.get('name')
-    print(name)
-    new_record = json.loads(request.data)
-    with open('data.txt', 'r') as f:
-        data = f.read()
-        records = json.loads(data)
-    record_found = False
-    for r in records:
-        if r['name'] == new_record['name']:
-            old_record = r
-            record_found = True
-    if record_found:
-        records.remove(old_record)
-        records.append(new_record)
-    else:
-        records.append(new_record)
-    with open('data.txt', 'w') as f:
-        f.write(json.dumps(records, indent=2))
-    return jsonify(records)
-
-
-@app.route('/', methods=['DELETE'])
-def delete_record():
-    name = request.args.get('name')
-    print(name)
-    with open('data.txt', 'r') as f:
-        data = f.read()
-        records = json.loads(data)
-    if name:
-        for record in records:
-            record_found = False
-            if record['name'] == name:
-                record_found = True
-                name_record = record
-        if record_found:
-            records.remove(name_record)
-            with open('data.txt', 'w') as f:
-                f.write(json.dumps(records, indent=2))
-            return jsonify(records, {'message': 'record has been deleted'})
-        else:
-            return jsonify({'error': 'name not found'})
-    else:
-        for record in records:
-            records.remove(record)
-        with open('data.txt', 'w') as f:
-            f.write(json.dumps(records, indent=2))
-        return jsonify(records, {'message': 'All records has been deleted'})
 
 
 if __name__ == "__main__":
