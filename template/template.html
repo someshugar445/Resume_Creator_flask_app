@@ -2,8 +2,8 @@
 <html lang="en" dir="ltr">
  <head>
    <meta charset="utf-8">
-   <title>Flask Parent Template</title>
-   <link rel="stylesheet" href="{{ url_for('static',     filename='css/template.css') }}">
+   <title>Base Template</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}">
      <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
@@ -13,18 +13,46 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
  </head>
+
+ <style>
+    body {
+   background-image: url("/static/resume3.png");
+   background-repeat: no-repeat, repeat;
+   background-color: #085ECF ;
+}
+.menu{
+   color: white;
+}
+    h1 {
+  text-align: center;
+}
+</style>
+
  <body>
+
+    {% block header %}
+
     <header>
       <div class="container">
-        <h1 class="logo">First Web App</h1>
+        <h1 class="header">Online Resume Builder</h1>
         <strong><nav>
           <ul class="menu">
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('submit') }}" style="color:white">Home</a></li>
+            <li><a href="{{ url_for('about') }}" style="color:white">About</a></li>
           </ul>
         </nav></strong>
       </div>
     </header>
-    
+
+    {% endblock header %}
+
     {% block content %}
-    {% endblock %}
+
+    {% endblock content %}
+
+    <br><br><br><br><br>
+    {% block footer %}
+    <img src="{{url_for('static', filename='Resumetips.png')}}" />
+    {% endblock footer %}
+
+</body>

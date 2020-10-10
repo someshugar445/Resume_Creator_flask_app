@@ -5,6 +5,7 @@ import os
 from flask import Flask, request, jsonify, render_template, redirect, url_for, send_from_directory
 from os.path import join, dirname, realpath
 from docx import Document
+from forms import DownloadForm
 
 app = Flask(__name__, template_folder='template')
 
@@ -26,7 +27,7 @@ def page_not_found(error):
     return 'This page does not exist', 404
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/search', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST' and request.form['submit_button'] == 'Download':
         resume = os.path.join(app.root_path, 'resume')
@@ -71,6 +72,55 @@ def home():
                 f.write(json.dumps(old_records, indent=2))
         return send_from_directory(directory=resume, filename='Resume2.docx')
     return render_template("home.html")
+
+
+@app.route('/', methods=('GET', 'POST'))
+def submit():
+    form = DownloadForm()
+    print(form.data)
+    if request.method == 'POST':
+        resume = os.path.join(app.root_path, 'resume')
+        file_path = os.path.join(resume, "Resume2.docx")
+        doc_obj = Document(file_path)
+        for paragraph in doc_obj.paragraphs:
+            delete_paragraph(paragraph)
+        for table in doc_obj.tables:
+            for row in table.rows:
+                remove_row(table, row)
+        doc_obj.add_heading("Resume", 0)
+        doc_obj.add_paragraph(form.name.data)
+        doc_obj.add_paragraph(form.email.data)
+        doc_obj.add_heading("Skills", 1)
+        doc_obj.add_paragraph(form.skills.data)
+        doc_obj.add_heading("Projects", 1)
+        doc_obj.add_paragraph(form.projects.data)
+        doc_obj.add_heading("Education", 1)
+        doc_obj.add_paragraph(form.education.data)
+        doc_obj.save(file_path)
+        old_records = []
+        # new_record = form
+        record_not_found = False
+        if os.stat("data.txt").st_size != 0:
+            with open('data.txt', 'r') as f:
+                data = f.read()
+            old_records = json.loads(data[:])
+            for record in old_records:
+                if record['name'] == form.name.data or record['email'] == form.email.data:
+                    record_not_found = False
+                else:
+                    record_not_found = True
+            if record_not_found:
+                old_records.append(form.data)
+                with open('data.txt', 'w') as f:
+                    f.write(json.dumps(old_records, indent=2))
+            else:
+                print("Info': 'name or email already exists")
+        else:
+            old_records.append(form.data)
+            with open('data.txt', 'w') as f:
+                f.write(json.dumps(old_records, indent=2))
+        return send_from_directory(directory=resume, filename='Resume2.docx')
+    return render_template('submit.html', form=form)
 
 
 @app.route("/about")

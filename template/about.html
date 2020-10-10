@@ -1,21 +1,30 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+{% extends "template.html" %}
+{% block content %}
+<style>
+h3{
+  text-align: center;
+  color: Green;
+}
+p{
+  text-align: center;
+  padding-left: 40%;
+  padding-right: 40%;
+}
+</style>
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <head>
     <meta charset="utf-8">
-    <title>About Flask</title>
+    <title>About </title>
   </head>
+
   <body>
-    <h1> About Flask </h1>
-    <p> Flask is a micro web framework written in Python.</p>
-    <p> Applications that use the Flask framework include Pinterest,
-      LinkedIn, and the community web page for Flask itself.</p>
+    <h3>About me</h3>
+      <p>Working as a Python Automation Developer in TCS and passionate about cutting-edge
+        technology and solving real world problems, with previous experience in Quality Assurance -
+        automation and manual testing. I am actively seeking to leverage my machine learning expertise
+        in different areas.Skilled in Agile Methodologies, Test Automation using python , SQL , and Software Testing.
+        Strong information technology professional with a Engineer’s Degree </p>
+    <h3> Contact </h3>
+    <p> Email: someshugar@gmail.com</p>
   </body>
-</html>
+{% endblock content %}
