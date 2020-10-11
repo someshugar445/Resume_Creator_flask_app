@@ -2,40 +2,68 @@
 
 {% block content %}
 <style>
-.form-group {
+.form-groups {
   text-align: center;
-  padding-top: 2%;
+  color: Black;
 }
+    .form-group-label{
+       padding-top: 1%;
+    }
+    .form-group-input{
+      text-align: center;
+    }
 </style>
-<center>
-    <form action="{{ url_for('submit') }}" id="form"  method=post>
-      <div class="form-group">
-        {{ form.name.label }}
+<body>
+    <form action="{{ url_for('submit') }}" id="form" class="form-groups" method=post>
+      <div>
+          <div class="form-group-label">
+        <label>{{ form.name.label }}</label>
+        </div>
+        <div class="form-group-input">
         {{ form.name }}
+        </div>
       </div>
 
-      <div class="form-group">
-        {{ form.email.label }}
+      <div>
+          <div class="form-group-label">
+        <label>{{ form.email.label }}</label>
+          </div>
+          <div class="form-group-input">
         {{ form.email }}
+          </div>
       </div>
 
-      <div class="form-group">
-          {{ form.projects.label }}
+      <div>
+          <div class="form-group-label">
+          <label>{{ form.projects.label }}</label>
+        </div>
+        <div class="form-group-input">
           {{ form.projects }}
+        </div>
       </div>
 
-       <div class="form-group">
-          {{ form.education.label }}
+       <div>
+           <div class="form-group-label">
+          <label>{{ form.education.label }}</label>
+               </div>
+        <div class="form-group-input">
           {{ form.education }}
+            </div>
       </div>
 
       <div class="form-group">
-          {{ form.skills.label }}
+          <div class="form-group-label">
+          <label>{{ form.skills.label }}</label>
+              </div>
+          <div class="form-group-input">
           {{ form.skills }}
+          </div>
       </div>
-        <div id="submit_form">
+        <div id="submit_form" class="form-group-input">
+            <div>
           {{ form.submit }}
+        <div>
         </div>
     </form>
-  </center>
+</body>
 {% endblock %} 

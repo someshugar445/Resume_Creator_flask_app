@@ -1,58 +1,124 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
- <head>
-   <meta charset="utf-8">
-   <title>Base Template</title>
-   <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}">
-     <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<head>
+    <meta charset="utf-8">
+    <title>Online Resume Builder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
- </head>
-
- <style>
+<style>
     body {
    background-image: url("/static/resume3.png");
    background-repeat: no-repeat, repeat;
    background-color: #085ECF ;
 }
-.menu{
-   color: white;
-}
     h1 {
   text-align: center;
+<!--  font-family: "Times New Roman", Times, serif;-->
 }
+
 </style>
 
- <body>
 
-    {% block header %}
+{% block navbar %}
+<head>
+    <style>
+    #toast_panel {
+          background: #e2231a;
+          color: white;
+        }
 
-    <header>
-      <div class="container">
+    </style>
+    <script>
+    $(document).ready(function () {
+      $('#toast_icon').on('click', function (e) {
+        $('#toast_panel').remove();
+      });
+      $('#loading').on('click', function (e) {
+        $('#toast_panel').remove();
+      });
+    });
+    $(document).ready(function (){
+    setTimeout(function(){ $('.toast').fadeOut() }, 15000);
+    })
+
+    </script>
+    <style>
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      border: None;
+      background-color: #2F4C95;
+    }
+
+    li {
+      float: left;
+    }
+
+    li a {
+      display: block;
+      color: White;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 20px;
+      font-family: "Times New Roman", Times, serif;
+    }
+
+    li a:hover:not(.active) {
+      background-color: #ddd;
+    }
+
+    li a.active {
+      color: white;
+      background-color: #4CAF50;
+    }
+
+    </style>
+</head>
+<body>
+
+<ul>
+    <li><a href="{{ url_for('submit') }}">HOME</a></li>
+    <li><a href="{{ url_for('about') }}">ABOUT</a></li>
+</ul>
+
+
+<div class="flashes">
+    {%for message in get_flashed_messages() %}
+    <div class="toast" id="toast_panel" style="position: absolute ; top: 10;right:0;width:20%;height:10%">
+        <center>
+            <div style="padding-top:20px">{{message}}</div>
+        </center>
+        <div id="toast_icon"></div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock navbar %}
+
+{% block header %}
+
+<header>
+    <div class="container">
         <h1 class="header">Online Resume Builder</h1>
-        <strong><nav>
-          <ul class="menu">
-            <li><a href="{{ url_for('submit') }}" style="color:white">Home</a></li>
-            <li><a href="{{ url_for('about') }}" style="color:white">About</a></li>
-          </ul>
-        </nav></strong>
-      </div>
-    </header>
+    </div>
+</header>
 
-    {% endblock header %}
+{% endblock header %}
 
-    {% block content %}
+{% block content %}
 
-    {% endblock content %}
+{% endblock content %}
 
-    <br><br><br><br><br>
-    {% block footer %}
-    <img src="{{url_for('static', filename='Resumetips.png')}}" />
-    {% endblock footer %}
+<br><br><br><br><br>
+
+{% block footer %}
+<img src="{{url_for('static', filename='Resumetips.png')}}"/>
+{% endblock footer %}
 
 </body>
