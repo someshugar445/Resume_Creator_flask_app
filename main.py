@@ -2,7 +2,7 @@
 # encoding: utf-8
 import json
 import os
-from flask import Flask, request, jsonify, render_template, redirect, url_for, send_from_directory
+from flask import Flask, request, jsonify, render_template, redirect, url_for, send_from_directory,flash
 from os.path import join, dirname, realpath
 from docx import Document
 from forms import DownloadForm
@@ -30,10 +30,11 @@ def page_not_found(error):
 @app.route('/', methods=('GET', 'POST'))
 def submit():
     form = DownloadForm()
+    print(form.errors)
     if request.method == 'GET':
         return render_template('submit.html', form=form)
-    else:
-        form = DownloadForm(request.form)
+    elif request.method == 'POST' and form.validate_on_submit():
+        # form = DownloadForm(request.form)
         resume = os.path.join(app.root_path, 'resume')
         file_path = os.path.join(resume, "Resume2.docx")
         doc_obj = Document(file_path)
@@ -75,6 +76,9 @@ def submit():
             with open('data.txt', 'w') as f:
                 f.write(json.dumps(old_records, indent=2))
         return send_from_directory(directory=resume, filename='Resume2.docx')
+    else:
+        flash("Form is not valid")
+        return render_template('submit.html', form=form)
 
 
 @app.route("/about")
@@ -83,4 +87,6 @@ def about():
 
 
 if __name__ == "__main__":
+    SECRET_KEY = os.urandom(32)
+    app.config['SECRET_KEY'] = SECRET_KEY
     app.run(debug=True, port=8080)
