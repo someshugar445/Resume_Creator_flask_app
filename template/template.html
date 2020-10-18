@@ -17,9 +17,19 @@
 }
     h1 {
   text-align: center;
-<!--  font-family: "Times New Roman", Times, serif;-->
 }
 
+  .footer {
+   padding-top: 0.5%;
+   padding-bottom: 1%;
+   position: absolute';
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #8a59ae;
+   color: white;
+   text-align: center;
+}
 </style>
 
 
@@ -53,7 +63,7 @@
       padding: 0;
       overflow: hidden;
       border: None;
-      background-color: #2F4C95;
+      background-color: #4d8080;
     }
 
     li {
@@ -67,7 +77,6 @@
       padding: 14px 16px;
       text-decoration: none;
       font-size: 20px;
-      font-family: "Times New Roman", Times, serif;
     }
 
     li a:hover:not(.active) {
@@ -78,14 +87,13 @@
       color: white;
       background-color: #4CAF50;
     }
-
     </style>
 </head>
 <body>
 
 <ul>
     <li><a href="{{ url_for('submit') }}">HOME</a></li>
-    <li><a href="{{ url_for('about') }}">ABOUT</a></li>
+    <li><a href="{{ url_for('about') }}">ABOUT ME</a></li>
 </ul>
 
 
@@ -118,7 +126,17 @@
 <br><br><br><br><br>
 
 {% block footer %}
-<img src="{{url_for('static', filename='Resumetips.png')}}"/>
-{% endblock footer %}
+<footer class="footer">
+  <div>
+        <h3 class="text-uppercase">Contact</h3>
+        <p>someshugar@gmail.com</p>
+        <h5 class="text-uppercase">Links</h5>
+        <div>
+            <a href="https://www.linkedin.com/in/somesh-ugar-791b28103/" style="color: white"><strong>LinkedIn</strong></a>
+        </div>
+  </div>
 
+</footer>
+
+{% endblock footer %}
 </body>
