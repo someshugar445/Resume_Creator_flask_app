@@ -1,4 +1,4 @@
-# My resume maker:
+# Resume Creator:
 
 This project gives the user a sample ready made resume template.
 
