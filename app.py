@@ -7,6 +7,8 @@ from os.path import join, dirname, realpath
 from docx import Document
 from forms import DownloadForm
 
+# set a 'SECRET_KEY' to enable the Flask session cookies
+app.config['SECRET_KEY'] = '12345687643'
 app = Flask(__name__, template_folder='template')
 
 
