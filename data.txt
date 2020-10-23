@@ -1,0 +1,11 @@
+[
+  {
+    "name": "Somesh Ugar",
+    "email": "someshugar@gmail.com",
+    "projects": "Development",
+    "education": "B.E",
+    "skills": "Python,R,SQL, Statistical Analysis, Exploratory Data Analysis,Data Science, Machine Learning,NLP",
+    "submit": true,
+    "csrf_token": "IjlmNWE2MzViYmUyNWI0Mjg5ODM4MDZhMjRlM2M3MzVjYTQzNDI1MzMi.X5KkZQ.PFQaGi6y6HOKgHiehMDpkpY4tW4"
+  }
+]
