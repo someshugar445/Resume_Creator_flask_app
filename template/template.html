@@ -11,20 +11,22 @@
 
 <style>
     body {
-   background-image: url("/static/resume3.png");
+   background-image: url("/static/Resume2.png");
    background-repeat: no-repeat, repeat;
-<!--   background-color: #325EA8 ;-->
    background-color: white ;
 }
     h1 {
   text-align: center;
+  color: white;
+}
+#page-container {
+  position: relative;
+  min-height: 40vh;
 }
 
   .footer {
-   padding-top: 0.5%;
    padding-bottom: 1%;
-   position: absolute';
-   left: 0;
+   position: absolute;
    bottom: 0;
    width: 100%;
    background-color: #325EA8;
@@ -124,9 +126,11 @@
 
 {% endblock content %}
 
-<br><br><br><br><br>
 
 {% block footer %}
+ <div id="page-container">
+   <div id="content-wrap">
+   </div>
 <footer class="footer">
   <div>
         <h3 class="text-uppercase">Contact</h3>
@@ -138,6 +142,7 @@
   </div>
 
 </footer>
+</div>
 
 {% endblock footer %}
 </body>

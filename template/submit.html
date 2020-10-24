@@ -4,7 +4,7 @@
 <style>
 .form-groups {
   text-align: center;
-  color: Black;
+  color: white;
 }
     .form-group-input{
       text-align: center;
@@ -139,12 +139,13 @@ border: solid 1px black;
       {% endif %}
             </div>
       </div>
-  <br> <br>
+
         <div id="submit_form" class="form-group-input">
             <div>
           {{ form.submit }}
         </div>
         </div>
     </form>
+  <img src="{{url_for('static', filename='Resumetips.png')}}" />
 </body>
 {% endblock %} 
