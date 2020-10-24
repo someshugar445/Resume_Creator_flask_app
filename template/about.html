@@ -6,17 +6,33 @@ h3{
 }
 p{
   text-align: center;
-  padding-left: 40%;
-  padding-right: 40%;
+  font-size: 15px;
 }
+.container {
+  position: relative;
+  width: 40%;
+}
+
+<!--.about_me {-->
+<!--  border:1px solid black;-->
+<!--  background-color: white;-->
+<!--  width: 40%;-->
+<!--  /* Center vertically and horizontally */-->
+<!--  position: absolute;-->
+<!--  top: 50%;-->
+<!--  left: 50%;-->
+<!--  margin: -25px 0 0 -25px; /* apply negative top and left margins to truly center the element */-->
+<!--}-->
 </style>
 
   <head>
     <meta charset="utf-8">
-    <title>About </title>
+    <title>About me</title>
   </head>
 
   <body>
+  <div class="container">
+  <div class="about_me">
     <h3>About me</h3>
       <p>Working as a Python Automation Developer in TCS and passionate about cutting-edge
         technology and solving real world problems, with previous experience in Quality Assurance -
@@ -26,5 +42,7 @@ p{
     <p>Please find the Contact Details given in the footer:</p>
     <p>Click on <strong>LinkedIn</strong> below to get my LinkedIn profile</p>
   </div>
+    </div>
+    </div>
   </body>
 {% endblock content %}

@@ -6,19 +6,40 @@
   text-align: center;
   color: Black;
 }
-    .form-group-label{
-       padding-top: 1%;
-    }
     .form-group-input{
       text-align: center;
     }
     .errors {
      color: red;
       }
-<!--    .form-group-input, .errors-->
-<!--    {-->
-<!--        display:inline-block;-->
-<!--    }-->
+
+ input[type=text], select {
+  width: 30%;
+  height: 40px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 10%;
+  height: 40px;
+  background-color: #45a049;
+  margin: 8px 0;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #32CD32;
+}
+span{
+display: inline-block;
+border: solid 1px black;
+}
 </style>
 <body>
     <form action="{{ url_for('submit') }}" id="form" class="form-groups" method=post>
@@ -56,14 +77,14 @@
       </div>
 
       <div>
-          <div class="form-group-label">
-          <label>{{ form.projects.label }}</label>
+          <div class="form-group-label" >
+          <label>{{ form.work_experiences.label }}</label>
         </div>
-        <div class="form-group-input">
-          {{ form.projects}}
-            {% if form.projects.errors %}
+        <div class="form-group-input" >
+          {{ form.work_experiences}}
+            {% if form.work_experiences.errors %}
         <div class="errors">
-          {% for error in form.projects.errors %}
+          {% for error in form.work_experiences.errors %}
             <p>{{ error }}</p>
           {% endfor %}
         </div>
@@ -102,6 +123,23 @@
       {% endif %}
           </div>
       </div>
+
+        <div>
+           <div class="form-group-label">
+          <label>{{ form.certifications.label }}</label>
+               </div>
+        <div class="form-group-input">
+          {{ form.certifications }}
+            {% if form.certifications.errors %}
+        <div class="errors">
+          {% for error in form.certifications.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+            </div>
+      </div>
+  <br> <br>
         <div id="submit_form" class="form-group-input">
             <div>
           {{ form.submit }}

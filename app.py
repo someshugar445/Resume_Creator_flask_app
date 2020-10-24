@@ -51,10 +51,12 @@ def submit():
         doc_obj.add_paragraph(form.email.data)
         doc_obj.add_heading("Skills", 1)
         doc_obj.add_paragraph(form.skills.data)
-        doc_obj.add_heading("Projects", 1)
-        doc_obj.add_paragraph(form.projects.data)
+        doc_obj.add_heading("Work Experience", 1)
+        doc_obj.add_paragraph(form.work_experiences.data)
         doc_obj.add_heading("Education", 1)
         doc_obj.add_paragraph(form.education.data)
+        doc_obj.add_heading("Certifications", 1)
+        doc_obj.add_paragraph(form.certifications.data)
         doc_obj.save(file_path)
         old_records = []
         # new_record = form
