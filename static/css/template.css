@@ -1,0 +1,34 @@
+body {
+   background-color: White ;
+}
+h1 {
+  text-align: center;
+  color: black;
+}
+#page-container {
+  position: relative;
+  min-height: 40vh;
+}
+
+  .footer {
+   /*padding-bottom: 1%;*/
+   position: absolute;
+   bottom: 0;
+   width: 100%;
+   background-color: #325EA8;
+   color:white;
+   text-align: center;
+}
+#toast_panel {
+   background: #e2231a;
+   color: white;
+        }
+h3{
+  text-align: center;
+  color: #FFA500;
+}
+p{
+  text-align: center;
+  font-size: 10px;
+  color: #FFA500;
+}

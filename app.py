@@ -31,6 +31,11 @@ def page_not_found(error):
 
 
 @app.route('/', methods=('GET', 'POST'))
+def home():
+    if request.method == 'GET':
+        return render_template('home.html')
+
+@app.route('/download', methods=('GET', 'POST'))
 def submit():
     form = DownloadForm()
     print(form.errors)

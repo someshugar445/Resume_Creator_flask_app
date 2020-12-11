@@ -4,47 +4,14 @@
     <meta charset="utf-8">
     <title>Online Resume Builder</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
-<style>
-    body {
-   background-image: url("/static/Resume2.png");
-   background-repeat: no-repeat, repeat;
-   background-color: white ;
-}
-    h1 {
-  text-align: center;
-  color: white;
-}
-#page-container {
-  position: relative;
-  min-height: 40vh;
-}
-
-  .footer {
-   padding-bottom: 1%;
-   position: absolute;
-   bottom: 0;
-   width: 100%;
-   background-color: #325EA8;
-   color: white;
-   text-align: center;
-}
-</style>
-
 
 {% block navbar %}
 <head>
-    <style>
-    #toast_panel {
-          background: #e2231a;
-          color: white;
-        }
-
-    </style>
     <script>
     $(document).ready(function () {
       $('#toast_icon').on('click', function (e) {
@@ -95,7 +62,7 @@
 <body>
 
 <ul>
-    <li><a href="{{ url_for('submit') }}">HOME</a></li>
+    <li><a href="{{ url_for('home') }}">HOME</a></li>
     <li><a href="{{ url_for('about') }}">ABOUT ME</a></li>
 </ul>
 
@@ -133,9 +100,9 @@
    </div>
 <footer class="footer">
   <div>
-        <h3 class="text-uppercase">Contact</h3>
-        <p>someshugar@gmail.com</p>
-        <h5 class="text-uppercase">Links</h5>
+        <h4 class="text-uppercase">Contact</h4>
+        <h4>someshugar@gmail.com</h4>
+        <h4 class="text-uppercase">Links</h4>
         <div>
             <a href="https://www.linkedin.com/in/somesh-ugar-791b28103/" style="color: white"><strong>LinkedIn</strong></a>
         </div>
