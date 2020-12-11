@@ -29,19 +29,19 @@ h3{
 }
 p{
   text-align: center;
-  font-size: 20px;
+  font-size: 40px;
   color: #FFA500;
 }
-input[type=submit] {
-  width: 10%;
-  height: 40px;
+.button{
+  width: 20%;
+  height: 50px;
   background-color: #45a049;
-  margin: 8px 0;
+  margin: 10px 0;
   border: none;
   border-radius: 20px;
   cursor: pointer;
 }
 
-input[type=submit]:hover {
+.button:hover {
   background-color: #32CD32;
 }
