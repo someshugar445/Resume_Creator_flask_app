@@ -29,6 +29,19 @@ h3{
 }
 p{
   text-align: center;
-  font-size: 10px;
+  font-size: 20px;
   color: #FFA500;
+}
+input[type=submit] {
+  width: 10%;
+  height: 40px;
+  background-color: #45a049;
+  margin: 8px 0;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #32CD32;
 }
