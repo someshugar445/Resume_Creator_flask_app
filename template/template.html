@@ -34,7 +34,6 @@
     <li><a href="{{ url_for('about') }}">ABOUT ME</a></li>
 </ul>
 
-
 <div class="flashes">
     {%for message in get_flashed_messages() %}
     <div class="toast" id="toast_panel" style="position: absolute ; top: 10;right:0;width:20%;height:10%">
@@ -49,11 +48,6 @@
 
 {% block header %}
 
-<header>
-    <div class="container">
-        <h1 class="header">Online Resume Builder</h1>
-    </div>
-</header>
 
 {% endblock header %}
 
@@ -68,9 +62,9 @@
    </div>
 <footer class="footer">
   <div>
-        <h4 class="text-uppercase">Contact</h4>
-        <h4>someshugar@gmail.com</h4>
-        <h4 class="text-uppercase">Links</h4>
+        <h5>Contact</h5>
+        <h5>someshugar@gmail.com</h5>
+        <h5>Links</h5>
         <div>
             <a href="https://www.linkedin.com/in/somesh-ugar-791b28103/" style="color: white"><strong>LinkedIn</strong></a>
         </div>

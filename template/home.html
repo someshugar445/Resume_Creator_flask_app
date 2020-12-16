@@ -1,29 +1,35 @@
 {% extends "template.html" %}
 {% block content %}
-
-  <head>
+<head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}">
     <title>Online Resume Builder</title>
-  </head>
+</head>
+<body>
 
-  <body>
+
+<div class="container" style="text-align:center;">
+  <img src="/static/images/notebook1.jpg" alt="Notebook" style="width:100%;">
+  <div class="content">
+    <h1 class="header">Online Resume Builder</h1>
+	<h3>Build your resume online</h3>
+    <h3>and land your dream job!!!</h3>
+  </div>
+</div>
+
   <center>
-    <h3>BUILD YOUR RESUME ONLINE</h3>
-    <h3>AND LAND YOUR DREAM JOB!!!</h3>
-    
 	<p>The perfect resume should detail out all your professional positions.
 	<p>What technical platforms and tools are you proficient? List all that apply to your work</p>
 	<p>and your professional experience.Start with your most recent job and work your way backward.</p>
 	<div>
-		<h3>For each role, list the following information:</h3>
+		<h4>For each role, list the following information:</h4>
 			<p>Job Title<p>
 			<p>Job Description<p>
 			<p>Achievements<p>
 			<p>Technical skills<p>
 	</div>
-	<h3>Click on below button to create your resume</h3>
-    <button type="submit" style="border-radius: 20px;border: none;cursor: pointer;margin: 8px 0;width: 20%;height: 40px;background-color: #45a049;" onclick="window.location.href='{{ url_for( 'submit') }}';"><strong>Create Resume<strong></button>
+	<h4>Click on below button to create your resume</h4>
+    <button type="submit" style="font-size:15px;border-radius: 20px;border:none;width: 25%;height: 40px;background-color: #45a049;" onclick="window.location.href='{{ url_for( 'submit') }}';">Create Resume</button>
   </center>
   <br><br><br>
   <br><br><br>

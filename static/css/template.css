@@ -1,17 +1,9 @@
-body {
-   background-color: White ;
-}
-h1 {
-  text-align: center;
-  color: black;
-}
 #page-container {
   position: relative;
   min-height: 40vh;
 }
 
   .footer {
-   padding-bottom: 2%;
    position: absolute;
    bottom: 0;
    width: 100%;
@@ -23,7 +15,7 @@ h1 {
    background: #e2231a;
    color: white;
         }
-h3{
+h4{
   text-align: center;
   color: #FFA500;
 }
@@ -31,7 +23,6 @@ p{
   text-align: center;
   font-size: medium;
   color: #8B008B;
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
     ul {
@@ -65,18 +56,34 @@ p{
       background-color: #4CAF50;
     }
 	h1 {
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
-  background-color: White;
-  width: 90%;
-  border: 10px solid green;
-  padding: 20px;
-  margin: 20px;
+  text-align: center;
+  color: white;
 }
 	h3 {
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
-  background-color: White;
-  width: 60%;
-  border: 5px ;
-  padding: 10px;
-  margin: 10px;
+  text-align: center;
+  color: white;
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  font-size: 17px;
+}
+
+.container {
+  position: relative;
+  max-width: 100%;
+}
+
+.container img {vertical-align: middle;}
+
+.container .content {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+  width: 100%;
 }
