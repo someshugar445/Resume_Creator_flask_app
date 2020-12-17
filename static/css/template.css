@@ -74,10 +74,12 @@ body {
 
 .container {
   position: relative;
-  max-width: 100%;
 }
 
-.container img {vertical-align: middle;}
+.container img {
+  vertical-align: middle;
+  width: 100%;
+  }
 
 .container .content {
   position: absolute;
